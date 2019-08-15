@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE generatorConfiguration PUBLIC
+    "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <context id="testTables" targetRuntime="MyBatis3">
+  	<commentGenerator>
+  		<!-- 是否去除自动生成的注释。true：去除 false：不去除 -->
+  		<property name="suppressAllComments" value="true"/>
+  	</commentGenerator>
+  	
+  	<!-- Mysql数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+        connectionURL="jdbc:mysql://localhost:3306/badminton"
+        userId="root"
+        password="">
+    </jdbcConnection>
+    
+    <!-- Oracle数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+    <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver"
+        connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:xxxx"
+        userId="root"
+        password="root">
+    </jdbcConnection> -->
+	
+	<!-- 默认false，把JDBC DECIMAL NUMERIC类型解析为Integer
+	为true，把JDBC DECIMAL NUMERIC类型解析为java.math.BigDecimal类型
+	-->
+    <javaTypeResolver >
+      	<property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+	
+	<!-- targetProject：生成PO类的位置 -->
+    <javaModelGenerator targetPackage="cn.yd.badminton.po" targetProject="./src/main/java">
+    	<!-- enableSubPackages：是否让schema作为包的后缀 -->
+      	<property name="enableSubPackages" value="false" />
+      	<!-- 从数据库返回的值，清理值前后的空格，去除首尾空格-->
+      	<property name="trimStrings" value="true" />
+    </javaModelGenerator>
+
+	<!-- targetProject：mapper映射文件生成的位置 -->
+    <sqlMapGenerator targetPackage="cn.yd.badminton.mapper"  targetProject="./src/main/java">
+    	<!-- enableSubPackages：是否让schema作为包的后缀 -->
+      <property name="enableSubPackages" value="false" />
+    </sqlMapGenerator>
+
+	<!-- targetPackage：mapper接口生成的位置 -->
+    <javaClientGenerator type="XMLMAPPER" targetPackage="cn.yd.badminton.mapper"  targetProject="./src/main/java">
+      	<!-- enableSubPackages：是否让schema作为包的后缀 -->
+      	<property name="enableSubPackages" value="false" />
+    </javaClientGenerator>
+
+	<!-- 指定数据库表 -->
+    <table schema="badminton" tableName="administrator"/>
+    <table schema="badminton" tableName="appraisal"/>
+      <table schema="badminton" tableName="appraisalpic"/>
+    <table schema="badminton" tableName="area"/>
+    <table schema="badminton" tableName="areapic"/>
+    <table schema="badminton" tableName="reservation"/>
+      <table schema="badminton" tableName="user"/>
+  </context>
+</generatorConfiguration>
