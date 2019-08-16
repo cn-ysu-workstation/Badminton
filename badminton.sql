@@ -11,7 +11,7 @@
  Target Server Version : 60005
  File Encoding         : 65001
 
- Date: 15/08/2019 20:33:01
+ Date: 16/08/2019 11:00:32
 */
 
 SET NAMES utf8mb4;
@@ -28,7 +28,12 @@ CREATE TABLE `administrator`  (
   `name` varchar(20) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL,
   `phonenumber` varchar(100) CHARACTER SET gbk COLLATE gbk_chinese_ci NULL DEFAULT NULL,
   PRIMARY KEY (`administrator_ID`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of administrator
+-- ----------------------------
+INSERT INTO `administrator` VALUES (1, 'zhangsan', '123', '张三', '155555555');
 
 -- ----------------------------
 -- Table structure for appraisal
@@ -108,8 +113,8 @@ CREATE TABLE `reservation`  (
   PRIMARY KEY (`reservation_ID`) USING BTREE,
   INDEX `会员ID外键1`(`user_ID`) USING BTREE,
   INDEX `场地ID外键2`(`area_ID`) USING BTREE,
-  CONSTRAINT `会员ID外键1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `场地ID外键2` FOREIGN KEY (`area_ID`) REFERENCES `area` (`area_ID`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `场地ID外键2` FOREIGN KEY (`area_ID`) REFERENCES `area` (`area_ID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `会员ID外键1` FOREIGN KEY (`user_ID`) REFERENCES `user` (`user_ID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = gbk COLLATE = gbk_chinese_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
