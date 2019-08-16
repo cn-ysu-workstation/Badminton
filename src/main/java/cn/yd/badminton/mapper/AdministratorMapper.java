@@ -3,6 +3,8 @@ package cn.yd.badminton.mapper;
 import cn.yd.badminton.po.Administrator;
 import cn.yd.badminton.po.AdministratorExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 public interface AdministratorMapper {
