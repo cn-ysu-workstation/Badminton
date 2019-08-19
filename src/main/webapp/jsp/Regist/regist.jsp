@@ -76,6 +76,7 @@
                     <input type="text" class="form-control" name="name" id="name" placeholder="请输入您的真实姓名" autocomplete="off"required="required">
                 </div>
                 <div class="form-group">
+                   请选择您的性别：
                     <select id="select" name="sex">
                         <option value="1">男</option>
                         <option value="0">女</option>
