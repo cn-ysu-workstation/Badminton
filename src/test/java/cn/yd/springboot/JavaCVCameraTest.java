@@ -26,7 +26,8 @@ public class JavaCVCameraTest {
                 grabber.stop();//停止抓取
                 System.exit(2);//退出
             }
-            canvas.showImage(grabber.grab());//获取摄像头图像并放到窗口上显示， 这里的Frame frame=grabber.grab(); frame是一帧视频图像
+            //获取摄像头图像并放到窗口上显示， 这里的Frame frame=grabber.grab(); frame是一帧视频图像
+            canvas.showImage(grabber.grab());
 
             Thread.sleep(50);//50毫秒刷新一次图像
         }
