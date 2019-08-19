@@ -1,5 +1,6 @@
 package cn.yd.badminton.service.impl;
 
+<<<<<<< HEAD
 import cn.yd.badminton.exception.CustomException;
 import cn.yd.badminton.mapper.AreaMapper;
 import cn.yd.badminton.po.Area;
@@ -8,6 +9,13 @@ import cn.yd.badminton.po.PageBean;
 import cn.yd.badminton.service.AreaService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+=======
+import cn.yd.badminton.mapper.AdministratorMapper;
+import cn.yd.badminton.mapper.AreaCustomMapper;
+import cn.yd.badminton.mapper.AreaMapper;
+import cn.yd.badminton.po.AreaCustom;
+import cn.yd.badminton.service.AreaService;
+>>>>>>> origin/master
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +26,7 @@ import java.util.List;
 @Transactional
 public class AreaServiceImpl implements AreaService {
     @Autowired
+<<<<<<< HEAD
     private AreaMapper areaMapper;
 
     @Override
@@ -84,5 +93,13 @@ public class AreaServiceImpl implements AreaService {
         }catch (Exception e){
             throw new CustomException("对不起，由于系统原因更新场地错误!");
         }
+=======
+    private AreaCustomMapper areaCustomMapper;
+
+    @Override
+    public List<AreaCustom> selectAreaAndReserVation() throws Exception{
+        List<AreaCustom> areaCustomList = areaCustomMapper.selectAreaAndReserVation();
+        return areaCustomList;
+>>>>>>> origin/master
     }
 }

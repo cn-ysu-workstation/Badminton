@@ -21,6 +21,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/Administrator")
 public class AdministratorController {
+
     @Autowired
     private AdministratorService administratorService;
     @Autowired
