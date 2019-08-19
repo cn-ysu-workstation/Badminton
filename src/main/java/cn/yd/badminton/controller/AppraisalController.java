@@ -18,15 +18,21 @@ public class AppraisalController {
     @Autowired
     private AppraisalService appraisalService;
 
-    @RequestMapping(value="insertInto",method={RequestMethod.POST})
-    public  String  insertInto(HttpSession session, Appraisal appraisal) throws Exception {
+    @RequestMapping(value="insertAppraisal",method={RequestMethod.POST})
+    public  String  insertAppraisal(HttpSession session, Appraisal appraisal) throws Exception {
         appraisal.setUserId((Integer) session.getAttribute("userId"));
         appraisal.setAppraisalId((Integer) session.getAttribute("appraisalId"));
         appraisal.setAppTime(new Date());
-        appraisalService.InsertIntoComment(appraisal);
+        appraisalService.InsertIntoAppraisal(appraisal);
 
         //返回场地预览页面
         return "";
     }
 
+    @RequestMapping(value="deInto",method={RequestMethod.POST})
+    public String deleteAppraisal(HttpSession session, Appraisal appraisal) throws Exception{
+
+        return "";
+
+    }
 }

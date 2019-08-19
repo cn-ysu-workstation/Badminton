@@ -16,7 +16,7 @@
   
   <body>
       <div id="container">
-          <form id="form1" action="<c:url value="/appr/insertInto"/>" method="post" ></form>
+          <form id="form1" action="<c:url value="/appr/insertAppraisal"/>" method="post" ></form>
           <ul>
 <%--              <li>商品名称：<input form="form1" type="text" name="name" /></li>--%>
               <li>

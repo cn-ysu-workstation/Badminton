@@ -4,6 +4,6 @@ import cn.yd.badminton.po.Appraisal;
 
 public interface AppraisalService {
 
-    void  InsertIntoComment(Appraisal appraisal) throws  Exception;
+    void  InsertIntoAppraisal(Appraisal appraisal) throws  Exception;
 
 }

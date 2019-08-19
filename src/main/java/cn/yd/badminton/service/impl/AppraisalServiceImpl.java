@@ -14,7 +14,7 @@ public class AppraisalServiceImpl  implements AppraisalService {
 
 
     @Override
-    public void InsertIntoComment(Appraisal appraisal) throws Exception {
+    public void InsertIntoAppraisal(Appraisal appraisal) throws Exception {
 
         appraisalMapper.insertSelective(appraisal);
 
