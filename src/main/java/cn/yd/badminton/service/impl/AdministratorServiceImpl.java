@@ -5,8 +5,6 @@ import cn.yd.badminton.mapper.AdministratorMapper;
 import cn.yd.badminton.mapper.AreaMapper;
 import cn.yd.badminton.po.*;
 import cn.yd.badminton.service.AdministratorService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

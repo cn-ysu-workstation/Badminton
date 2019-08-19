@@ -75,7 +75,7 @@ public class AdministratorController {
     private String updateArea(MultipartFile file, AreaQueryVo areaQueryVo) throws Exception {
         List<Area> areaList = areaQueryVo.getAreaList();
         for (Area area:areaList) {
-            areaService.saveArea(area);
+            areaService.updateArea(area);
             if(!file.isEmpty())
             {
                 Areapic areapic = new Areapic();
