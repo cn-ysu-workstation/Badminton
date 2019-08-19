@@ -114,7 +114,7 @@
             <version>1.4.4</version>
         </dependency>
 
-        <!-- 前端表单 封装 json对象-->
+        <!-- 前端表单封装json对象-->
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
