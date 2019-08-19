@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yd.badminton.mapper.AreaCustomMapper">
+
+    <resultMap type="cn.yd.badminton.po.AreaCustom" id="AreaCustomRes">
+        <!--先写AreaCustom实体类的直接属性  -->
+        <!-- column 是数据库中的名称 ; property 是自己类中的的别名 -->
+        <id column="area_ID" property="areaId"/><!-- 主键 -->
+        <result column="areaname" property="areaname"/>
+        <result column="price" property="price"/>
+        <result column="address" property="address"/>
+        <result column="starttime" property="starttime"/>
+        <result column="stoptime" property="stoptime"/>
+        <result column="profit" property="profit"/>
+        <result column="goodNum" property="goodNum"/>
+        <result column="badNum" property="badNum"/>
+        <result column="goodRate" property="goodRate"/>
+        <result column="des" property="des"/>
+
+        <association property="reservation" javaType="cn.yd.badminton.po.Reservation">
+            <id column="reservation_ID" property="reservationId"/><!-- 主键 -->
+            <result column="area_ID" property="areaId"/>
+            <result column="user_ID" property="userId"/>
+            <result column="pre_date" property="preDate"/>
+            <result column="starttime" property="starttime"/>
+            <result column="stoptime" property="stoptime"/>
+            <result column="pre_status" property="preStatus"/>
+        </association>
+
+    </resultMap>
+
+    <select id="selectAreaAndReserVation"  resultMap="AreaCustomRes" >
+        select area.areaname,area.price,reservation.pre_date,reservation.starttime,reservation.stoptime from reservation,area where reservation.area_ID = area.area_ID
+	 </select>
+</mapper>
