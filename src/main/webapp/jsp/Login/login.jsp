@@ -1,112 +1,101 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<% 
+<%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <%--<base href="<%=basePath%>">--%>
-    
-    <title>登录页面</title>
-	<!-- Meta tag Keywords -->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>用户登录</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta charset="UTF-8" />
-	<meta name="keywords" content=""
-	/>
-	<script>
-		addEventListener("load", function () {
-			setTimeout(hideURLbar, 0);
-		}, false);
+	<meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
+	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
 
-		function hideURLbar() {
-			window.scrollTo(0, 1);
-		}
-	</script>
-	<!-- Meta tag Keywords -->
-	<!-- css files -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/Login/css/style.css" type="text/css" media="all" />
-	<!-- Style-CSS -->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/Login/css/fontawesome-all.css">
-	<!-- Font-Awesome-Icons-CSS -->
-	<!-- //css files -->
-	<!-- web-fonts -->
-	<link href="http://maxcdn.bootstrapcdn.com/css?family=Josefin+Sans:100,100i,300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
-	<link href="http://maxcdn.bootstrapcdn.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-	<!-- //web-fonts -->
+	<!-- Facebook and Twitter integration -->
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content=""/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
 
-  </head>
-  
-  <body>
-    <!-- bg effect -->
-	<div id="bg">
-		<canvas></canvas>
-		<canvas></canvas>
-		<canvas></canvas>
+	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/Login/css/bootstrap.min.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/Login/css/animate.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/jsp/Login/css/style.css">
+
+
+	<!-- Modernizr JS -->
+	<script src="${pageContext.request.contextPath}/jsp/Login/js/modernizr-2.6.2.min.js"></script>
+	<!-- FOR IE9 below -->
+	<!--[if lt IE 9]>-->
+	<script src="${pageContext.request.contextPath}/jsp/Login/js/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body class="style-2">
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+
+
+			<!-- Start Sign In Form -->
+			<form action="<c:url value="/Administrator/Login"/>" class="fh5co-form animate-box" data-animate-effect="fadeInLeft" method="post">
+				<h2><h2>
+					<c:choose>
+						<c:when test="${mess ne null }">${mess }</c:when>
+						<c:otherwise>登录</c:otherwise>
+					</c:choose>
+					<i class="fas fa-level-down-alt"></i>
+				</h2></h2>
+				<div class="form-group">
+					<label for="username" class="sr-only">用户名</label>
+					<input type="text" class="form-control" id="username" name="username" placeholder="请输入您的用户名" autocomplete="off" required="required">
+				</div>
+				<div class="form-group">
+					<label for="password" class="sr-only">密码</label>
+					<input type="password" class="form-control" id="password" name="password" placeholder="请输入您的密码" autocomplete="off" required="required">
+				</div>
+				<div class="form-group">
+					<label for="remember"><input type="checkbox" id="remember">记住密码</label>
+				</div>
+				<div class="form-group">
+					<p>还没有注册？ <a href="${pageContext.request.contextPath}/jsp/Regist/regist.jsp">注册</a> | <a href="forgot2.html">忘记密码?</a></p>
+				</div>
+				<div class="form-group">
+					<input type="submit" value="登录" class="btn btn-primary">
+				</div>
+
+			</form>
+			<!-- END Sign In Form -->
+
+		</div>
 	</div>
-	<!-- //bg effect -->
-	<!-- title -->
-	<h1>YD商城管理系统</h1>
-	<!-- //title -->
-	<!-- content -->
-	<div class="sub-main-w3">
-		<form action="<c:url value="/Administrator/Login" />" method="post">
-			<h2>
-				<c:choose>
-					<c:when test="${mess ne null }">${mess }</c:when>
-					<c:otherwise>现在开始登录</c:otherwise>
-				</c:choose>
-				<i class="fas fa-level-down-alt"></i>
-			</h2>
-			<div class="form-style-agile">
-				<label>
-					<i class="fas fa-user"></i>
-					用户名
-				</label>
-				<input placeholder="请输入用户名" name="username" type="text" required="">
-			</div>
-			<div class="form-style-agile">
-				<label>
-					<i class="fas fa-unlock-alt"></i>
-					密码
-				</label>
-				<input placeholder="请输入密码" name="password" type="password" required="">
-			</div>
-			<!-- checkbox -->
-			<div class="wthree-text">
-				<ul>
-					<li>
-						<label class="anim">
-							<input type="checkbox" class="checkbox" required="">
-							<span>记住密码</span>
-						</label>
-					</li>
-					<li>
-						<a href="#">忘记密码？</a>
-					</li>
-				</ul>
-			</div>
-			<!-- //checkbox -->
-			<input type="submit" value="Log In">
-		</form>
-	</div>
-	<!-- //content -->
+</div>
 
-	<!-- copyright -->
-	<div class="footer">
-		<p>Copyright &copy; 2018.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-	</div>
-	<!-- //copyright -->
+<!-- jQuery -->
+<script src="${pageContext.request.contextPath}/jsp/Login/js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="${pageContext.request.contextPath}/jsp/Login/js/bootstrap.min.js"></script>
+<!-- Placeholder -->
+<script src="${pageContext.request.contextPath}/jsp/Login/js/jquery.placeholder.min.js"></script>
+<!-- Waypoints -->
+<script src="${pageContext.request.contextPath}/jsp/Login/js/jquery.waypoints.min.js"></script>
+<!-- Main JS -->
+<script src="${pageContext.request.contextPath}/jsp/Login/js/main.js"></script>
 
-	<!-- Jquery -->
-	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-	<!-- //Jquery -->
-
-	<!-- effect js -->
-	<script src="${pageContext.request.contextPath}/jsp/Login/js/canva_moving_effect.js"></script>
-	<!-- //effect js -->
-  </body>
+</body>
 </html>
