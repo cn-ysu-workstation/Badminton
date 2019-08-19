@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/Administrator")
 public class AdministratorController {
+
     @Autowired
     private AdministratorService administratorService;
 
