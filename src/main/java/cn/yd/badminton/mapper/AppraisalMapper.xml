@@ -132,9 +132,6 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.yd.badminton.po.Appraisal">
-    <selectKey keyProperty="appraisal_ID" resultType="Integer" order="AFTER">   //after指的是执行sql语句后
-      select last_insert_id()
-    </selectKey>
     insert into appraisal
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="appraisalId != null">

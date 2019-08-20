@@ -140,9 +140,6 @@
       #{goodRate,jdbcType=INTEGER}, #{des,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.yd.badminton.po.Area">
-    <selectKey keyProperty="area_ID" order="AFTER" resultType="int">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
     insert into area
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="areaId != null">
