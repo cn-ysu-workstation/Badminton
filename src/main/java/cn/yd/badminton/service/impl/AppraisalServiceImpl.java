@@ -5,8 +5,10 @@ import cn.yd.badminton.po.Appraisal;
 import cn.yd.badminton.service.AppraisalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class AppraisalServiceImpl  implements AppraisalService {
 
     @Autowired
@@ -19,5 +21,10 @@ public class AppraisalServiceImpl  implements AppraisalService {
         appraisalMapper.insertSelective(appraisal);
 
 
+    }
+
+    @Override
+    public void deleteAppraisal(Appraisal appraisal) {
+        appraisalMapper.deleteByPrimaryKey(appraisal.getAppraisalId());
     }
 }

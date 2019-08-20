@@ -6,4 +6,5 @@ public interface AppraisalService {
 
     void  InsertIntoAppraisal(Appraisal appraisal) throws  Exception;
 
+    void deleteAppraisal(Appraisal appraisal);
 }
