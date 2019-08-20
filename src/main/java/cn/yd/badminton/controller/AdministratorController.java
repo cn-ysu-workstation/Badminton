@@ -5,7 +5,6 @@ import cn.yd.badminton.service.AdministratorService;
 import cn.yd.badminton.service.AreaPicService;
 import cn.yd.badminton.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
