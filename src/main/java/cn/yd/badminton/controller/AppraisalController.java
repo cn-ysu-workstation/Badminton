@@ -1,5 +1,6 @@
 package cn.yd.badminton.controller;
 
+import cn.yd.badminton.po.ApprQueryVo;
 import cn.yd.badminton.po.Appraisal;
 import cn.yd.badminton.po.Appraisalpic;
 import cn.yd.badminton.service.ApprPicService;
@@ -86,5 +87,64 @@ public class AppraisalController {
         //返回场地预览页面
         return "index1";
 
+    }
+
+    @RequestMapping(value="/updateAppr",method={RequestMethod.POST})
+    public  String  updateAppraisal(Appraisal appraisal, HttpServletRequest request) throws Exception {
+        HttpSession session=request.getSession();
+        //        appraisal.setUserId((Integer) session.getAttribute("appraisalId"));
+//        appraisal.setUserId((Integer) session.getAttribute("userId"));
+//        appraisal.setAreaId((Integer) session.getAttribute("areaId"));
+        appraisal.setAppraisalId(14);
+        //其实修改评论时用户id和场地id是不变的
+//        appraisal.setUserId(1);
+//        appraisal.setAreaId(1);
+        appraisal.setAppTime(new Date());
+        appraisalService.updateAppraisal(appraisal);
+        //删除之前数据库中的图片路径
+        apprPicService.deleteAppraisalPics(appraisal);
+
+        //将当前上下文初始化给  CommonsMutipartResolver （多部分解析器）
+        CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(request.getSession().getServletContext());
+        //检查form中是否有enctype="multipart/form-data"
+        if(multipartResolver.isMultipart(request)){
+            //将request变成多部分request
+            MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
+            //获取multiRequest 中所有的文件名
+            Iterator iter=multiRequest.getFileNames();
+//            LinkedHashMap<String,MultipartFile> picSet=(LinkedHashMap<String,MultipartFile>)iter.next();
+            while(iter.hasNext()){
+                //一次遍历所有文件
+                MultipartFile file=multiRequest.getFile(iter.next().toString());
+                if(!file.isEmpty()){
+                    Appraisalpic apprpic = new Appraisalpic();
+                    apprpic.setAppraisalId(appraisal.getAppraisalId());
+                    FastDFSClient client = new FastDFSClient("E:\\client.conf");
+                    //上传到nginx服务器
+                    String path= client.uploadFile(file.getBytes(),"jpg");
+                    System.out.println(path+"/r/n");
+                    apprpic.setPic(path);
+                    apprPicService.saveApprPic(apprpic);
+                }
+            }
+        }
+        //返回场地预览页面
+        return "index1";
+    }
+
+    @RequestMapping(value="/selectAppr",method={RequestMethod.POST})
+    public  String  selectAppraisal(Integer userId,Integer areaId, HttpServletRequest request) throws Exception {
+        ApprQueryVo apprQueryVo = new ApprQueryVo();
+        userId=1;
+        areaId=1;
+        apprQueryVo.setApprCustomList(appraisalService.selectApprs(userId,areaId));
+
+        /**
+         * describe:TODO
+         * creat_user: qk
+         * creat_time: 2019/8/20 15:42
+         **/
+        //返回个人/管理员评价页面
+        return "index1";
     }
 }
