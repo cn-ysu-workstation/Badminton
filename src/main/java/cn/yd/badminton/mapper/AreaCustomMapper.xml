@@ -30,6 +30,6 @@
     </resultMap>
 
     <select id="selectAreaAndReserVation"  resultMap="AreaCustomRes" >
-        select area.areaname,area.price,reservation.pre_date,reservation.starttime,reservation.stoptime from reservation,area where reservation.area_ID = area.area_ID
+        select area.areaname,area.price,reservation.pre_date,reservation.starttime,reservation.stoptime from reservation,area where reservation.area_ID = area.area_ID ORDER BY pre_date DESC
 	 </select>
 </mapper>
