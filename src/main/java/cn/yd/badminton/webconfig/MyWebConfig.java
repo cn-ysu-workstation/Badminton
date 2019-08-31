@@ -21,12 +21,12 @@ public class MyWebConfig implements WebMvcConfigurer {
     * */
     public void addInterceptors(InterceptorRegistry registry)
     {
-        InterceptorRegistration interceptorRegistration = registry.addInterceptor(new LoginInterceptor());
+        /*InterceptorRegistration interceptorRegistration = registry.addInterceptor(new LoginInterceptor());
         interceptorRegistration.excludePathPatterns("/error");
         interceptorRegistration.excludePathPatterns("/jsp/**");
         interceptorRegistration.excludePathPatterns("/Administrator/toLogin");
         interceptorRegistration.excludePathPatterns("/Administrator/Login");
-        interceptorRegistration.addPathPatterns("/**");
+        interceptorRegistration.addPathPatterns("/**");*/
     }
 
     /*

@@ -52,12 +52,7 @@
     </javaClientGenerator>
 
 	<!-- 指定数据库表 -->
-    <table schema="badminton" tableName="administrator"/>
-    <table schema="badminton" tableName="appraisal"/>
-      <table schema="badminton" tableName="appraisalpic"/>
-    <table schema="badminton" tableName="area"/>
-    <table schema="badminton" tableName="areapic"/>
     <table schema="badminton" tableName="reservation"/>
-      <table schema="badminton" tableName="user"/>
+
   </context>
 </generatorConfiguration>

@@ -1,8 +1,13 @@
 package cn.yd.badminton.service.impl;
 
+
+import cn.yd.badminton.exception.CustomException;
+import cn.yd.badminton.mapper.AppraisalCustomMapper;
 import cn.yd.badminton.mapper.AppraisalMapper;
 import cn.yd.badminton.mapper.AppraisalpicMapper;
 import cn.yd.badminton.po.*;
+import cn.yd.badminton.po.Appraisal;
+import cn.yd.badminton.po.AppraisalCustom;
 import cn.yd.badminton.service.AppraisalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,28 +16,50 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class AppraisalServiceImpl  implements AppraisalService {
 
     @Autowired
     private AppraisalMapper appraisalMapper;
+    @Autowired
+    private AppraisalCustomMapper appraisalCustomMapper;
 
     @Autowired
     private AppraisalpicMapper appraisalpicMapper;
 
     @Override
     public void InsertIntoAppraisal(Appraisal appraisal) throws Exception {
-
-        appraisalMapper.insertSelective(appraisal);
-
-
+        try{
+            appraisalMapper.insertSelective(appraisal);
+        }catch (Exception e){
+            throw new CustomException("对不起，添加评论失败!");
+        }
     }
 
     @Override
-    public void deleteAppraisal(Appraisal appraisal) {
-        appraisalMapper.deleteByPrimaryKey(appraisal.getAppraisalId());
+    public List<AppraisalCustom> findAppraisalByareaid(Integer id) throws Exception {
+        try {
+            return appraisalCustomMapper.selectAppraisalByareaid(id);
+        }catch (Exception e)
+        {
+            throw new Exception("对不起，查询评论失败!");
+        }
     }
+
+    @Override
+    public void deleteAppraisal(Appraisal appraisal) throws Exception {
+        try{
+            appraisalMapper.deleteByPrimaryKey(appraisal.getAppraisalId());
+        }catch (Exception e)
+        {
+            throw new Exception("对不起，删除评论失败！");
+        }
+
+    }
+
 
     @Override
     public void updateAppraisal(Appraisal appraisal) {

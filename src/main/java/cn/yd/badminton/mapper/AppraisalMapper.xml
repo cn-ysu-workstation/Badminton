@@ -132,6 +132,9 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.yd.badminton.po.Appraisal">
+    <selectKey keyProperty="appraisalId" resultType="Integer" order="AFTER">
+      select last_insert_id()
+    </selectKey>
     insert into appraisal
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="appraisalId != null">

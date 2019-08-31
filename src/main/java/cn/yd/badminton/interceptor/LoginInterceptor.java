@@ -21,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
 			Object arg2) throws Exception {
 		//判断用户是否已经登陆（登陆的用户信息在session中）
-		HttpSession session = request.getSession();
+		/*HttpSession session = request.getSession();
 		//从session中取出用户身份信息
 		Administrator administrator = (Administrator) session.getAttribute("Administrator");
 		
@@ -32,7 +32,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 			//去登陆页面登陆
 			request.getRequestDispatcher("/jsp/Login/login.jsp").forward(request, response);
 			return false;
-		}
+		}*/
+		return true;
 	}
 
 	@Override

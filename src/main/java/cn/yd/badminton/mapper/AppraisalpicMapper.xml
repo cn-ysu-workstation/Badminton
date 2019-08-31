@@ -178,4 +178,8 @@
       pic = #{pic,jdbcType=VARCHAR}
     where apppic_ID = #{apppicId,jdbcType=INTEGER}
   </update>
+
+  <select id="selectFirstPic" parameterType="java.lang.Integer" resultType="java.lang.String">
+    select pic from areapic where area_ID=#{areaId} LIMIT 1
+  </select>
 </mapper>

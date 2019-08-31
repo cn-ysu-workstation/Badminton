@@ -1,0 +1,141 @@
+.clear{
+    clear: both;
+}
+.line{
+    width: 780px;
+    height: 1px;
+    background-color: #404040;
+}
+.cm-area{
+    width: 100%;
+    text-align: center;
+}
+.cm-area>div{
+    display: inline-block;
+}
+.cmi {
+    width: 780px;
+    clear: both;
+    margin-top: 20px;
+}
+
+.cmi>div {
+    float: left;
+}
+
+/* 濂借瘎 */
+
+@keyframes cmi-c-move {
+    from {
+        left: 650px;
+        margin-left: -20px;
+        transform: rotate(15deg);
+        -webkit-transform: rotate(15deg);
+        -moz-transform: rotate(15deg);
+    }
+    to {
+        left: 720px;
+        margin-left: 0px;
+        transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+        -moz-transform: rotate(-30deg);
+    }
+}
+
+.cmi-c {
+    /* position: absolute; */
+    left: 720px;
+    top: -15px;
+    width: 60px;
+    transform: rotate(-30deg);
+    -webkit-transform: rotate(-30deg);
+    -moz-transform: rotate(-30deg);
+    -webkit-animation: cmi-c-move 0.5s 1;
+    /*Safari and Chrome*/
+}
+
+/* 宸瘎 */
+
+@keyframes cmi-c-bad-move {
+    from {
+        left: 650px;
+        margin-left: -20px;
+        transform: rotate(-30deg);
+        -webkit-transform: rotate(-30deg);
+        -moz-transform: rotate(-30deg);
+    }
+    to {
+        left: 720px;
+        margin-left: 0px;
+        transform: rotate(15deg);
+        -webkit-transform: rotate(15deg);
+        -moz-transform: rotate(15deg);
+    }
+}
+
+.cmi-c-bad {
+    /* position: absolute; */
+    left: 720px;
+    top: -15px;
+    width: 60px;
+    transform: rotate(15deg);
+    -webkit-transform: rotate(15deg);
+    -moz-transform: rotate(15deg);
+    -webkit-animation: cmi-c-bad-move 0.5s 1;
+    /*Safari and Chrome*/
+}
+
+/* 璇勮椤圭殑绗竴閮ㄥ垎 */
+
+.cmi-h {
+    height: 94px;
+    width: 150px;
+    text-align: center;
+}
+
+.cmi-h h3 {
+    margin-top: 3px;
+    color: #404040;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.cmi-h p {
+    text-align: center;
+    font-size: 12px;
+    color: black;
+}
+
+/* 璇勮椤逛富浣撳唴瀹?*/
+
+.cmi-b {
+    min-height: 94px;
+    width: 560px;
+    color: black;
+    font-size: 13px;
+}
+
+.cmi-images {
+    width: 100%;
+    text-align: left;
+}
+.cmi-images img {
+    width: 135px;
+    margin-left: 10px;
+}
+
+.cmi-images img:nth-child(1) {
+    margin-left: 24px;
+}
+
+.cmi-time {
+    width: 100%;
+    text-align: right;
+}
+
+.cmi-time p {
+    margin-right: 36px;
+    color: #404040;
+    font-size: 12px;
+    font-weight: normal;
+}

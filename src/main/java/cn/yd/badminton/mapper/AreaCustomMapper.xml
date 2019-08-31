@@ -30,6 +30,81 @@
     </resultMap>
 
     <select id="selectAreaAndReserVation"  resultMap="AreaCustomRes" >
-        select area.areaname,area.price,reservation.pre_date,reservation.starttime,reservation.stoptime from reservation,area where reservation.area_ID = area.area_ID ORDER BY pre_date DESC
-	 </select>
+        select area.areaname,area.price,reservation.pre_date,reservation.starttime,reservation.stoptime from reservation,area where reservation.pre_status != '-1'  and  reservation.area_ID = area.area_ID ORDER BY pre_date DESC
+    </select>
+
+    <resultMap id="AreaAll" type="cn.yd.badminton.po.AreaCustom">
+        <id column="area_ID" property="areaId"/><!-- 主键 -->
+        <result column="areaname" property="areaname"/>
+        <result column="price" property="price"/>
+        <result column="address" property="address"/>
+        <result column="starttime" property="starttime"/>
+        <result column="stoptime" property="stoptime"/>
+        <result column="profit" property="profit"/>
+        <result column="goodNum" property="goodNum"/>
+        <result column="badNum" property="badNum"/>
+        <result column="good_rate" property="goodRate"/>
+        <result column="des" property="des"/>
+
+        <collection property="areapicList" ofType="cn.yd.badminton.po.Areapic">
+            <result column="areapic_ID" property="areapicId"/>
+            <result column="pic" property="pic"/>
+        </collection>
+
+    </resultMap>
+    <select id="selectAreaAllInfo" parameterType="Integer" resultMap="AreaAll">
+        SELECT * from area LEFT JOIN areapic on area.area_ID = areapic.area_ID WHERE area.area_ID=#{id}
+    </select>
+
+
+    <resultMap id="AllAreaReservation" type="cn.yd.badminton.po.AreaCustom">
+        <id column="area_ID" property="areaId"/><!-- 主键 -->
+        <result column="areaname" property="areaname"/>
+        <result column="price" property="price"/>
+        <result column="address" property="address"/>
+        <result column="profit" property="profit"/>
+        <result column="goodNum" property="goodNum"/>
+        <result column="badNum" property="badNum"/>
+        <result column="goodRate" property="goodRate"/>
+        <result column="des" property="des"/>
+
+        <collection property="reservationList" ofType="cn.yd.badminton.po.Reservation">
+            <id column="reservation_ID" property="reservationId"/>
+            <result column="user_ID" property="userId"/>
+            <result column="starttime" property="starttime"/>
+            <result column="stoptime" property="stoptime"/>
+            <result column="pre_date" property="preDate"/>
+            <result column="pre_status" property="preStatus"/>
+        </collection>
+
+    </resultMap>
+    <select id="selectAreaReservation" parameterType="cn.yd.badminton.po.Reservation" resultMap="AllAreaReservation">
+
+        select area.area_ID,area.areaname,area.price,res.pre_date,res.starttime,res.stoptime,res.reservation_ID,res.user_ID,res.pre_status from area LEFT JOIN  (select * from reservation where pre_date=#{preDate,jdbcType=DATE}) as res on area.area_ID = res.area_ID ;
+    </select>
+
+
+    <resultMap id="AreaAndAreaListPicRes" type="cn.yd.badminton.po.AreaCustom">
+        <id column="area_ID" property="areaId"/><!-- 主键 -->
+        <result column="areaname" property="areaname"/>
+        <result column="price" property="price"/>
+        <result column="address" property="address"/>
+        <result column="starttime" property="starttime"/>
+        <result column="stoptime" property="stoptime"/>
+        <result column="profit" property="profit"/>
+        <result column="goodNum" property="goodNum"/>
+        <result column="badNum" property="badNum"/>
+        <result column="goodRate" property="goodRate"/>
+        <result column="des" property="des"/>
+
+        <collection property="areapicList" ofType="cn.yd.badminton.po.Areapic">
+            <id column="areapic_ID" property="areapicId"/>
+            <result column="pic" property="pic"/>
+        </collection>
+
+    </resultMap>
+    <select id="selectAreaAndAreaListPic" resultMap="AreaAndAreaListPicRes">
+        SELECT * from area LEFT JOIN areapic on area.area_ID = areapic.area_ID
+    </select>
+
 </mapper>

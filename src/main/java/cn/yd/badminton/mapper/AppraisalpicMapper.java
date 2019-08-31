@@ -27,4 +27,6 @@ public interface AppraisalpicMapper {
     int updateByPrimaryKeySelective(Appraisalpic record);
 
     int updateByPrimaryKey(Appraisalpic record);
+
+    String selectFirstPic(Integer areaId);
 }

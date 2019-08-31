@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yd.badminton.mapper.AppraisalCustomMapper">
+
+    <resultMap type="cn.yd.badminton.po.AppraisalCustom" id="allAppraisal">
+        <!--先写AreaCustom实体类的直接属性  -->
+        <!-- column 是数据库中的名称 ; property 是自己类中的的别名 -->
+        <id column="appraisal_ID" property="appraisalId"/><!-- 主键 -->
+        <result column="app_status" property="appStatus"/>
+        <result column="info" property="info"/>
+        <result column="app_time" property="appTime"/>
+
+        <association property="user" javaType="cn.yd.badminton.po.User">
+            <result column="username" property="username"/>
+        </association>
+
+        <association property="area" javaType="cn.yd.badminton.po.Area">
+            <result column="areaname" property="areaname"/>
+            <result column="address"  property="address" />
+        </association>
+
+        <collection property="appraisalpicList" ofType="cn.yd.badminton.po.Appraisalpic">
+            <id column="apppic_ID" property="apppicId"/>
+            <result column="appraisal_ID" property="appraisalId"/>
+            <result column="pic" property="pic"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="selectAppraisalByareaid"  parameterType="Integer" resultMap="allAppraisal" >
+       SELECT appraisal.appraisal_ID,area.areaname,area.address,`user`.username,appraisal.app_status,appraisal.info,appraisal.app_time,appraisalpic.pic FROM appraisal NATURAL JOIN `user` NATURAL JOIN area LEFT JOIN appraisalpic on appraisal.appraisal_ID = appraisalpic.appraisal_ID WHERE appraisal.area_ID = #{areaid}
+	 </select>
+
+
+    <resultMap type="cn.yd.badminton.po.AppraisalCustom" id="allUserAppraisal">
+        <!--先写AreaCustom实体类的直接属性  -->
+        <!-- column 是数据库中的名称 ; property 是自己类中的的别名 -->
+        <id column="appraisal_ID" property="appraisalId"/><!-- 主键 -->
+        <result column="app_status" property="appStatus"/>
+        <result column="info" property="info"/>
+        <result column="app_time" property="appTime"/>
+
+        <association property="user" javaType="cn.yd.badminton.po.User">
+            <result column="username" property="username"/>
+        </association>
+
+        <association property="area" javaType="cn.yd.badminton.po.Area">
+            <result column="areaname" property="areaname"/>
+            <result column="address"  property="address" />
+        </association>
+
+        <collection property="appraisalpicList" ofType="cn.yd.badminton.po.Appraisalpic">
+            <id column="apppic_ID" property="apppicId"/>
+            <result column="appraisal_ID" property="appraisalId"/>
+            <result column="pic" property="pic"/>
+        </collection>
+
+    </resultMap>
+
+    <select id="selectAppraisalByuserid"  parameterType="Integer" resultMap="allUserAppraisal" >
+          SELECT appraisal.appraisal_ID,area.areaname,area.address,`user`.username,appraisal.app_status,appraisal.info,appraisal.app_time,appraisalpic.pic FROM appraisal NATURAL JOIN `user` NATURAL JOIN area LEFT JOIN appraisalpic on appraisal.appraisal_ID = appraisalpic.appraisal_ID WHERE appraisal.user_ID = #{userid}
+       </select>
+
+
+</mapper>

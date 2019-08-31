@@ -8,4 +8,6 @@ public interface ApprPicService {
     void saveApprPic(Appraisalpic apprpic);
 
     void deleteAppraisalPics(Appraisal appraisal);
+
+    String selectAreaPic(Integer areaId) throws Exception;
 }

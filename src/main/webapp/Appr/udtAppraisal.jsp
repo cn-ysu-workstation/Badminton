@@ -17,7 +17,7 @@
   
   <body>
       <div id="container">
-          <form id="form1" action="${pageContext.request.contextPath}/appr/insertAppr" method="post" enctype="multipart/form-data"></form>
+          <form id="form1" action="${pageContext.request.contextPath}/appr/updateAppr" method="post" enctype="multipart/form-data"></form>
           <ul>
 <%--              <li>商品名称：<input form="form1" type="text" name="name" /></li>--%>
               <li>
@@ -31,8 +31,7 @@
     <li>评价图片3：<input form="form1" type="file" name="file3" <%--id="uploadfile"--%> accept='image/*' onchange='openFile3(event)' /></li>
     <li><input form="form1" type="submit" value="发表" /></li>
           </ul>
-          <form id="form2" action="${pageContext.request.contextPath}/appr/delAppr" method="post" ></form>
-          <input type="submit" value="删除" form="form2"/>
+
     预览1:<img  id="output" />
     预览2:<img  id="output2" />
     预览3:<img  id="output3" />

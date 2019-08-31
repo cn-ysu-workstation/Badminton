@@ -20,12 +20,19 @@
     <!-- js files-->
 
     <script src="${pageContext.request.contextPath}/jsp/Visualization/js/echarts.js"></script>
+    <style media="screen">
+    #main{
+      width:1000px;
+      height: 500px;
+      margin: auto;
+    }
 
+    </style>
 </head>
 
 <body>
 
-<div  id="main" style="width:1200px; height: 600px;"></div>
+<div  id="main"  ></div>
 <script src="${pageContext.request.contextPath}/jsp/Visualization/js/statistical.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/jsp/Visualization/js/echarts_ex.js"></script>
 </body>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.yd.badminton.mapper.ReservationCustomMapper">
+
+    <resultMap type="cn.yd.badminton.po.ReservationCustom" id="UserReservation">
+        <!--先写AreaCustom实体类的直接属性  -->
+        <!-- column 是数据库中的名称 ; property 是自己类中的的别名 -->
+        <id column="primarykry" property="primarykry"/><!-- 主键 -->
+        <id column="area_ID" property="areaId"/>
+        <result column="pre_date" property="preDate"/>
+        <result column="pre_status" property="preStatus"/>
+
+        <association property="user" javaType="cn.yd.badminton.po.User">
+            <id column="user_ID" property="userId" />
+            <result column="username" property="username"/>
+        </association>
+
+        <association property="area" javaType="cn.yd.badminton.po.Area">
+
+            <result column="areaname" property="areaname"/>
+            <result column="address"  property="address" />
+            <result column="price" property="price"/>
+        </association>
+
+        <collection property="workTimeList" ofType="cn.yd.badminton.po.WorkTime">
+            <result column="starttime" property="starttime" />
+            <result column="stoptime" property="stoptime" />
+        </collection>
+    </resultMap>
+
+    <select id="selectReservarionByuserId"  parameterType="Integer" resultMap="UserReservation" >
+        SELECT user.user_ID,username,reservation.primarykry,reservation.starttime,reservation.stoptime,reservation.pre_date,reservation.pre_status,area.area_ID,areaname,address,area.price FROM `user`,area,reservation WHERE reservation.user_ID = #{id} AND `user`.user_ID = #{id} AND reservation.area_ID = area.area_ID
+	 </select>
+
+
+
+
+    <resultMap type="cn.yd.badminton.po.ReservationCustom" id="AllReservation">
+        <!--先写AreaCustom实体类的直接属性  -->
+        <!-- column 是数据库中的名称 ; property 是自己类中的的别名 -->
+        <id column="reservation_ID" property="reservationId"/><!-- 主键 -->
+        <result column="starttime" property="starttime"/>
+        <result column="stoptime" property="stoptime"/>
+        <result column="pre_date" property="preDate"/>
+        <result column="pre_status" property="preStatus"/>
+
+        <association property="user" javaType="cn.yd.badminton.po.User">
+            <id column="user_ID" property="userId" />
+            <result column="username" property="username"/>
+        </association>
+
+        <association property="area" javaType="cn.yd.badminton.po.Area">
+            <id column="area_ID" property="areaId"/>
+            <result column="areaname" property="areaname"/>
+            <result column="address"  property="address" />
+
+        </association>
+
+    </resultMap>
+
+    <select id="selectAllReservation" resultMap="AllReservation" >
+        SELECT user.user_ID,username,reservation.reservation_ID,reservation.starttime,reservation.stoptime,reservation.pre_date,reservation.pre_status,area.area_ID,areaname,address FROM `user`,area,reservation WHERE reservation.user_ID=`user`.user_ID AND reservation.area_ID = area.area_ID order by reservation.pre_status asc
+	 </select>
+
+</mapper>

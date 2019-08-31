@@ -551,6 +551,76 @@ public class ReservationExample {
             addCriterion("pre_status not between", value1, value2, "preStatus");
             return (Criteria) this;
         }
+
+        public Criteria andPrimarykryIsNull() {
+            addCriterion("primarykry is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryIsNotNull() {
+            addCriterion("primarykry is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryEqualTo(String value) {
+            addCriterion("primarykry =", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryNotEqualTo(String value) {
+            addCriterion("primarykry <>", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryGreaterThan(String value) {
+            addCriterion("primarykry >", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryGreaterThanOrEqualTo(String value) {
+            addCriterion("primarykry >=", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryLessThan(String value) {
+            addCriterion("primarykry <", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryLessThanOrEqualTo(String value) {
+            addCriterion("primarykry <=", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryLike(String value) {
+            addCriterion("primarykry like", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryNotLike(String value) {
+            addCriterion("primarykry not like", value, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryIn(List<String> values) {
+            addCriterion("primarykry in", values, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryNotIn(List<String> values) {
+            addCriterion("primarykry not in", values, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryBetween(String value1, String value2) {
+            addCriterion("primarykry between", value1, value2, "primarykry");
+            return (Criteria) this;
+        }
+
+        public Criteria andPrimarykryNotBetween(String value1, String value2) {
+            addCriterion("primarykry not between", value1, value2, "primarykry");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -1,5 +1,7 @@
 package cn.yd.badminton.po;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Appraisal {
@@ -10,7 +12,8 @@ public class Appraisal {
     private Integer areaId;
 
     private Integer appStatus;
-
+    //解决取出的时间比实际时间少8小时的问题
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date appTime;
 
     private String info;
@@ -62,4 +65,5 @@ public class Appraisal {
     public void setInfo(String info) {
         this.info = info == null ? null : info.trim();
     }
+
 }

@@ -1,0 +1,41 @@
+body{
+    background:url("../images/bg_2.jpg") no-repeat;
+    background-size:100% 100%;
+    /*border: 1px solid red ;*/
+    width: 1300px;
+    height: 900px;
+    /*background-size: 1900px 1974px;*/
+}
+#container,#area{
+    margin: 0px 0px 0px 350px;
+    /*border: 1px solid red ;*/
+}
+
+#container{
+    margin: 0px 0px 0px 400px;
+}
+div{
+    /*margin: 0px 0px 0px 400px;*/
+    /*border: 1px solid red ;*/
+}
+
+form{
+
+    /*border: 1px solid red ;*/
+}
+
+img{
+    /*width:300px;*/
+    height: 300px;
+}
+
+/*#firP,#secP,#thiP{*/
+/*     !*position: absolute;*!*/
+/*     float: left;*/
+/* }*/
+
+.otherP{
+    float: left;
+    margin: 0px 50px 0px 50px;
+    /*position: relative;*/
+}

@@ -1,4 +1,4 @@
-var url="http://localhost:8080/Badminton/ShowStatistical/StatisticalResultsJSON"
+var url="http://localhost:8080/Badminton/Administrator/StatisticalResultsJSON"
 //二维数组存储数据
 var areaDataArray = new Array();
 var riqiData = new Array();
@@ -60,7 +60,7 @@ var changdiData = new Array();
                     //subtext: '副标题',//副标题文本，'\n'指定换行
                     sublink: '',//副标题文本超链接
                     subtarget: null,//指定窗口打开副标题超链接，支持'self' | 'blank'，不指定等同为'blank'（新窗口）
-                    x:'350px',//水平安放位置，默认为'left'，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）
+                    x:'300px',//水平安放位置，默认为'left'，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）
                     y: 'top',//垂直安放位置，默认为top，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）
                     textAlign: 'center',//水平对齐方式，默认根据x设置自动调整，可选为： left' | 'right' | 'center
                     padding: 5,//标题内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距
@@ -157,10 +157,3 @@ var changdiData = new Array();
             }
             myChart.setOption(option);
         })
-
-
-
-
-
-
-

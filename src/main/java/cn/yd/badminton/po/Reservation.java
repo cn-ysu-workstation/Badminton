@@ -1,5 +1,7 @@
 package cn.yd.badminton.po;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Reservation {
@@ -9,6 +11,7 @@ public class Reservation {
 
     private Integer userId;
 
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone="GMT+8")
     private Date preDate;
 
     private Integer starttime;
@@ -16,6 +19,8 @@ public class Reservation {
     private Integer stoptime;
 
     private Integer preStatus;
+
+    private String primarykry;
 
     public Integer getReservationId() {
         return reservationId;
@@ -71,5 +76,13 @@ public class Reservation {
 
     public void setPreStatus(Integer preStatus) {
         this.preStatus = preStatus;
+    }
+
+    public String getPrimarykry() {
+        return primarykry;
+    }
+
+    public void setPrimarykry(String primarykry) {
+        this.primarykry = primarykry == null ? null : primarykry.trim();
     }
 }

@@ -9,6 +9,7 @@
     <result column="starttime" jdbcType="INTEGER" property="starttime" />
     <result column="stoptime" jdbcType="INTEGER" property="stoptime" />
     <result column="pre_status" jdbcType="INTEGER" property="preStatus" />
+    <result column="primarykry" jdbcType="VARCHAR" property="primarykry" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    reservation_ID, area_ID, user_ID, pre_date, starttime, stoptime, pre_status
+    reservation_ID, area_ID, user_ID, pre_date, starttime, stoptime, pre_status, primarykry
   </sql>
   <select id="selectByExample" parameterType="cn.yd.badminton.po.ReservationExample" resultMap="BaseResultMap">
     select
@@ -104,10 +105,10 @@
   <insert id="insert" parameterType="cn.yd.badminton.po.Reservation">
     insert into reservation (reservation_ID, area_ID, user_ID, 
       pre_date, starttime, stoptime, 
-      pre_status)
+      pre_status, primarykry)
     values (#{reservationId,jdbcType=INTEGER}, #{areaId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
       #{preDate,jdbcType=DATE}, #{starttime,jdbcType=INTEGER}, #{stoptime,jdbcType=INTEGER}, 
-      #{preStatus,jdbcType=INTEGER})
+      #{preStatus,jdbcType=INTEGER}, #{primarykry,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.yd.badminton.po.Reservation">
     insert into reservation
@@ -133,6 +134,9 @@
       <if test="preStatus != null">
         pre_status,
       </if>
+      <if test="primarykry != null">
+        primarykry,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="reservationId != null">
@@ -155,6 +159,9 @@
       </if>
       <if test="preStatus != null">
         #{preStatus,jdbcType=INTEGER},
+      </if>
+      <if test="primarykry != null">
+        #{primarykry,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.preStatus != null">
         pre_status = #{record.preStatus,jdbcType=INTEGER},
       </if>
+      <if test="record.primarykry != null">
+        primarykry = #{record.primarykry,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       pre_date = #{record.preDate,jdbcType=DATE},
       starttime = #{record.starttime,jdbcType=INTEGER},
       stoptime = #{record.stoptime,jdbcType=INTEGER},
-      pre_status = #{record.preStatus,jdbcType=INTEGER}
+      pre_status = #{record.preStatus,jdbcType=INTEGER},
+      primarykry = #{record.primarykry,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="preStatus != null">
         pre_status = #{preStatus,jdbcType=INTEGER},
       </if>
+      <if test="primarykry != null">
+        primarykry = #{primarykry,jdbcType=VARCHAR},
+      </if>
     </set>
     where reservation_ID = #{reservationId,jdbcType=INTEGER}
   </update>
@@ -237,7 +251,8 @@
       pre_date = #{preDate,jdbcType=DATE},
       starttime = #{starttime,jdbcType=INTEGER},
       stoptime = #{stoptime,jdbcType=INTEGER},
-      pre_status = #{preStatus,jdbcType=INTEGER}
+      pre_status = #{preStatus,jdbcType=INTEGER},
+      primarykry = #{primarykry,jdbcType=VARCHAR}
     where reservation_ID = #{reservationId,jdbcType=INTEGER}
   </update>
 </mapper>

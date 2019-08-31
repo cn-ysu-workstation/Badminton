@@ -30,4 +30,15 @@ public class ApprPicServiceImpl implements ApprPicService {
         criteria.andAppraisalIdEqualTo(appraisal.getAppraisalId());
         appraisalpicMapper.deleteByExample(appraisalpicExample);
     }
+
+    @Override
+    public String selectAreaPic(Integer areaId) throws Exception{
+        String path=null;
+        try{
+            path=appraisalpicMapper.selectFirstPic(areaId);
+        }catch (Exception e){
+            System.out.println("error");
+        }
+        return path;
+    }
 }

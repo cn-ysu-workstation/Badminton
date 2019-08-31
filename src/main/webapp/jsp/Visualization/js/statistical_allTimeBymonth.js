@@ -1,12 +1,24 @@
-var url="http://localhost:8080/Badminton/ShowStatistical/StatisticalResultsJSON"
+var url="http://localhost:8080/Badminton/Administrator/StatisticalResultsJSON"
 //二维数组存储数据
+var myChart;
 $("#showGraph").click(function(){
+
   var areaDataArray = new Array();
-  var timeArray = new Array(32).fill(0);
-  var moneyArray = new Array(32).fill(0);
   var tmp1 = 1;
   var tmp2 = 1;
   var chooseMonth = $(".selectedMonth").val();
+
+  if (chooseMonth == '01' ||chooseMonth == '03' ||chooseMonth == '05' ||chooseMonth == '07' ||chooseMonth == '08' ||chooseMonth == '10' ||chooseMonth == '12') {
+    var timeArray = new Array(32).fill(0);
+    var moneyArray = new Array(32).fill(0);
+  }else if (chooseMonth == '02') {
+    var timeArray = new Array(29).fill(0);
+    var moneyArray = new Array(29).fill(0);
+  }else {
+    var timeArray = new Array(31).fill(0);
+    var moneyArray = new Array(31).fill(0);
+  }
+
   var chooseYear = ['2019-'+chooseMonth]
    var beginDay ='2019-'+chooseMonth+'-01';
     if (parseInt(chooseMonth) < 9) {
@@ -42,14 +54,14 @@ $("#showGraph").click(function(){
               });
               for (var i = 0; i < areaDataArray.length; i++) {
                 if (areaDataArray[i][2].substring(0,2) != chooseMonth) {
-                      console.log("cishu："+i)
-                    console.log("预选："+chooseMonth)
-                    console.log("截取："+areaDataArray[i][2].substring(0,2))
-                    console.log("判断"+areaDataArray[i][2].substring(0,2) != chooseMonth)
+                    //   console.log("cishu："+i)
+                    // console.log("预选："+chooseMonth)
+                    // console.log("截取："+areaDataArray[i][2].substring(0,2))
+                    // console.log("判断"+areaDataArray[i][2].substring(0,2) != chooseMonth)
                     areaDataArray[i].fill('999999');
                 }
               }
-              console.log(areaDataArray);
+           console.log(areaDataArray);
 
               for (var i = 0;i < areaDataArray.length ;i++){
                 if (areaDataArray[i][2] != '999999') {
@@ -58,12 +70,20 @@ $("#showGraph").click(function(){
                 }
 
               }
-              console.log(timeArray);
-              console.log(moneyArray);
+              // console.log(timeArray);
+              // console.log(moneyArray);
 
               var app = {};
-              var myChart = echarts.init(document.getElementById('main'));
-
+              if (myChart != null && myChart != "" && myChart != undefined) {
+                   myChart.dispose();
+            } 
+            $("#main").css({
+              "width":"700px",
+               "height": "600px",
+               "display":"inline-block"
+            })
+             myChart = echarts.init(document.getElementById('main'));
+              // myChart.setOption();
               var cellSize = [100, 100];
               var pieRadius =40;
 
@@ -116,26 +136,6 @@ $("#showGraph").click(function(){
               var scatterData = getVirtulData();
 
               option = {
-                  title : {
-                      show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
-                      text: '场地总营业时间统计图【按月查看】\n',//主标题文本，'\n'指定换行
-                      //subtext: '副标题',//副标题文本，'\n'指定换行
-                      sublink: '',//副标题文本超链接
-                      subtarget: null,//指定窗口打开副标题超链接，支持'self' | 'blank'，不指定等同为'blank'（新窗口）
-                      x:'center',//水平安放位置，默认为'left'，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）
-                      y: '30px',//垂直安放位置，默认为top，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）
-                      textAlign: 'center',//水平对齐方式，默认根据x设置自动调整，可选为： left' | 'right' | 'center
-                      padding: 5,//标题内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距
-                      itemGap: 10,//主副标题纵向间隔，单位px，默认为10
-                      textStyle: {//主标题文本样式
-                          // {"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                          fontFamily: 'Arial, Verdana, sans...',
-                          fontSize: 30,
-                          fontStyle: 'normal',
-                          fontWeight: "bolder",
-                          color:'#f00'
-                      }
-                  },
                   tooltip : {},
                   legend: {
                       data: ['所有场地共经营时长/小时', '总盈利/千元'],
@@ -206,9 +206,8 @@ $("#showGraph").click(function(){
 
 })
 $("#pageleft").click(function(){
+
   var areaDataArray = new Array();
-  var timeArray = new Array(32).fill(0);
-  var moneyArray = new Array(32).fill(0);
   var tmp1 = 1;
   var tmp2 = 1;
   var chooseMonth = $(".selectedMonth").val();
@@ -223,6 +222,19 @@ $("#pageleft").click(function(){
   if(chooseMonth =='00' ){
     chooseMonth = '12'
   }
+
+  if (chooseMonth == '01' ||chooseMonth == '03' ||chooseMonth == '05' ||chooseMonth == '07' ||chooseMonth == '08' ||chooseMonth == '10' ||chooseMonth == '12') {
+    var timeArray = new Array(32).fill(0);
+    var moneyArray = new Array(32).fill(0);
+  }else if (chooseMonth == '02') {
+    var timeArray = new Array(29).fill(0);
+    var moneyArray = new Array(29).fill(0);
+  }else {
+    var timeArray = new Array(31).fill(0);
+    var moneyArray = new Array(31).fill(0);
+  }
+   console.log("---"+timeArray.length);
+
   var chooseYear = ['2019-'+chooseMonth]
    var beginDay ='2019-'+chooseMonth+'-01';
     if (parseInt(chooseMonth) < 9) {
@@ -260,14 +272,14 @@ $("#pageleft").click(function(){
               });
               for (var i = 0; i < areaDataArray.length; i++) {
                 if (areaDataArray[i][2].substring(0,2) != chooseMonth) {
-                      console.log("cishu："+i)
-                    console.log("预选："+chooseMonth)
-                    console.log("截取："+areaDataArray[i][2].substring(0,2))
-                    console.log("判断"+areaDataArray[i][2].substring(0,2) != chooseMonth)
+                    //   console.log("cishu："+i)
+                    // console.log("预选："+chooseMonth)
+                    // console.log("截取："+areaDataArray[i][2].substring(0,2))
+                    // console.log("判断"+areaDataArray[i][2].substring(0,2) != chooseMonth)
                     areaDataArray[i].fill('999999');
                 }
               }
-              console.log(areaDataArray);
+           console.log(areaDataArray);
 
               for (var i = 0;i < areaDataArray.length ;i++){
                 if (areaDataArray[i][2] != '999999') {
@@ -276,12 +288,21 @@ $("#pageleft").click(function(){
                 }
 
               }
-              console.log(timeArray);
-              console.log(moneyArray);
+              // console.log(timeArray);
+              // console.log(moneyArray);
+
 
               var app = {};
-              var myChart = echarts.init(document.getElementById('main'));
 
+              if (myChart != null && myChart != "" && myChart != undefined) {
+                   myChart.dispose();
+              } 
+              $("#main").css({
+                "width":"700px",
+                 "height": "600px",
+                 "display":"inline-block"
+              })
+              myChart = echarts.init(document.getElementById('main'));
               var cellSize = [100, 100];
               var pieRadius =40;
 
@@ -334,26 +355,7 @@ $("#pageleft").click(function(){
               var scatterData = getVirtulData();
 
               option = {
-                  title : {
-                      show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
-                      text: '场地总营业时间统计图【按月查看】\n',//主标题文本，'\n'指定换行
-                      //subtext: '副标题',//副标题文本，'\n'指定换行
-                      sublink: '',//副标题文本超链接
-                      subtarget: null,//指定窗口打开副标题超链接，支持'self' | 'blank'，不指定等同为'blank'（新窗口）
-                      x:'center',//水平安放位置，默认为'left'，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）
-                      y: '30px',//垂直安放位置，默认为top，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）
-                      textAlign: 'center',//水平对齐方式，默认根据x设置自动调整，可选为： left' | 'right' | 'center
-                      padding: 5,//标题内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距
-                      itemGap: 10,//主副标题纵向间隔，单位px，默认为10
-                      textStyle: {//主标题文本样式
-                          // {"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                          fontFamily: 'Arial, Verdana, sans...',
-                          fontSize: 30,
-                          fontStyle: 'normal',
-                          fontWeight: "bolder",
-                          color:'#f00'
-                      }
-                  },
+
                   tooltip : {},
                   legend: {
                       data: ['所有场地共经营时长/小时', '总盈利/千元'],
@@ -425,9 +427,8 @@ $("#pageleft").click(function(){
 
 })
 $("#pageright").click(function(){
+
   var areaDataArray = new Array();
-  var timeArray = new Array(32).fill(0);
-  var moneyArray = new Array(32).fill(0);
   var tmp1 = 1;
   var tmp2 = 1;
   var chooseMonth = $(".selectedMonth").val();
@@ -439,9 +440,22 @@ $("#pageright").click(function(){
     chooseMonth = '0'+(parseInt(chooseMonth)+1)
   }
 
-  if(chooseMonth =='12' ){
+  if(chooseMonth =='13' ){
     chooseMonth = '01'
   }
+
+  if (chooseMonth == '01' ||chooseMonth == '03' ||chooseMonth == '05' ||chooseMonth == '07' ||chooseMonth == '08' ||chooseMonth == '10' ||chooseMonth == '12') {
+    var timeArray = new Array(32).fill(0);
+    var moneyArray = new Array(32).fill(0);
+  }else if (chooseMonth == '02') {
+    var timeArray = new Array(29).fill(0);
+    var moneyArray = new Array(29).fill(0);
+  }else {
+    var timeArray = new Array(31).fill(0);
+    var moneyArray = new Array(31).fill(0);
+  }
+
+
   var chooseYear = ['2019-'+chooseMonth]
    var beginDay ='2019-'+chooseMonth+'-01';
     if (parseInt(chooseMonth) < 9) {
@@ -479,14 +493,14 @@ $("#pageright").click(function(){
               });
               for (var i = 0; i < areaDataArray.length; i++) {
                 if (areaDataArray[i][2].substring(0,2) != chooseMonth) {
-                      console.log("cishu："+i)
-                    console.log("预选："+chooseMonth)
-                    console.log("截取："+areaDataArray[i][2].substring(0,2))
-                    console.log("判断"+areaDataArray[i][2].substring(0,2) != chooseMonth)
+                    //   console.log("cishu："+i)
+                    // console.log("预选："+chooseMonth)
+                    // console.log("截取："+areaDataArray[i][2].substring(0,2))
+                    // console.log("判断"+areaDataArray[i][2].substring(0,2) != chooseMonth)
                     areaDataArray[i].fill('999999');
                 }
               }
-              console.log(areaDataArray);
+           console.log(areaDataArray);
 
               for (var i = 0;i < areaDataArray.length ;i++){
                 if (areaDataArray[i][2] != '999999') {
@@ -495,11 +509,19 @@ $("#pageright").click(function(){
                 }
 
               }
-              console.log(timeArray);
-              console.log(moneyArray);
+              // console.log(timeArray);
+              // console.log(moneyArray);
 
+            if (myChart != null && myChart != "" && myChart != undefined) {
+                   myChart.dispose();
+            } 
+            $("#main").css({
+              "width":"700px",
+               "height": "600px",
+               "display":"inline-block"
+            })
               var app = {};
-              var myChart_R = echarts.init(document.getElementById('main'));
+              myChart = echarts.init(document.getElementById('main'));
 
               var cellSize = [100, 100];
               var pieRadius =40;
@@ -553,26 +575,7 @@ $("#pageright").click(function(){
               var scatterData = getVirtulData();
 
               option = {
-                  title : {
-                      show:true,//显示策略，默认值true,可选为：true（显示） | false（隐藏）
-                      text: '场地总营业时间统计图【按月查看】\n',//主标题文本，'\n'指定换行
-                      //subtext: '副标题',//副标题文本，'\n'指定换行
-                      sublink: '',//副标题文本超链接
-                      subtarget: null,//指定窗口打开副标题超链接，支持'self' | 'blank'，不指定等同为'blank'（新窗口）
-                      x:'center',//水平安放位置，默认为'left'，可选为：'center' | 'left' | 'right' | {number}（x坐标，单位px）
-                      y: '30px',//垂直安放位置，默认为top，可选为：'top' | 'bottom' | 'center' | {number}（y坐标，单位px）
-                      textAlign: 'center',//水平对齐方式，默认根据x设置自动调整，可选为： left' | 'right' | 'center
-                      padding: 5,//标题内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距
-                      itemGap: 10,//主副标题纵向间隔，单位px，默认为10
-                      textStyle: {//主标题文本样式
-                          // {"fontSize": 18,"fontWeight": "bolder","color": "#333"}
-                          fontFamily: 'Arial, Verdana, sans...',
-                          fontSize: 30,
-                          fontStyle: 'normal',
-                          fontWeight: "bolder",
-                          color:'#f00'
-                      }
-                  },
+                
                   tooltip : {},
                   legend: {
                       data: ['所有场地共经营时长/小时', '总盈利/千元'],
@@ -625,20 +628,20 @@ $("#pageright").click(function(){
                   var pieInitialized;
                   setTimeout(function () {
                       pieInitialized = true;
-                      myChart_R.setOption({
-                          series: getPieSeries(scatterData, myChart_R)
+                      myChart.setOption({
+                          series: getPieSeries(scatterData, myChart)
                       });
                   }, 10);
 
                   app.onresize = function () {
                       if (pieInitialized) {
-                          myChart_R.setOption({
-                              series: getPieSeriesUpdate(scatterData, myChart_R)
+                          myChart.setOption({
+                              series: getPieSeriesUpdate(scatterData, myChart)
                           });
                       }
                   };
               }
-              myChart_R.setOption(option);
+              myChart.setOption(option);
               $(".selectedMonth").val(chooseMonth);
           })
 
